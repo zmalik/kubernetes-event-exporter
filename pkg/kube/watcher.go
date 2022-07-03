@@ -76,7 +76,11 @@ func (e *EventWatcher) onEvent(event *corev1.Event) {
 
 	labels, err := e.labelCache.GetLabelsWithCache(&event.InvolvedObject)
 	if err != nil {
-		log.Error().Err(err).Msg("Cannot list labels of the object")
+		if ev.InvolvedObject.Kind != "CustomResourceDefinition" {
+			log.Error().Err(err).Msg("Cannot list labels of the object")
+		} else {
+			log.Debug().Err(err).Msg("Cannot list labels of the object (CRD)")
+		}
 		// Ignoring error, but log it anyways
 	} else {
 		ev.InvolvedObject.Labels = labels
@@ -85,7 +89,11 @@ func (e *EventWatcher) onEvent(event *corev1.Event) {
 
 	annotations, err := e.annotationCache.GetAnnotationsWithCache(&event.InvolvedObject)
 	if err != nil {
-		log.Error().Err(err).Msg("Cannot list annotations of the object")
+		if ev.InvolvedObject.Kind != "CustomResourceDefinition" {
+			log.Error().Err(err).Msg("Cannot list annotations of the object")
+		} else {
+			log.Debug().Err(err).Msg("Cannot list annotations of the object (CRD)")
+		}
 	} else {
 		ev.InvolvedObject.Annotations = annotations
 		ev.InvolvedObject.ObjectReference = *event.InvolvedObject.DeepCopy()
