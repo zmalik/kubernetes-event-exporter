@@ -18,6 +18,8 @@ type Config struct {
 	LeaderElection kube.LeaderElectionConfig `yaml:"leaderElection"`
 	Route          Route                     `yaml:"route"`
 	Receivers      []sinks.ReceiverConfig    `yaml:"receivers"`
+	KubeQPS        float32                   `yaml:"kubeQPS,omitempty"`
+	KubeBurst      int                       `yaml:"kubeBurst,omitempty"`
 }
 
 func (c *Config) Validate() error {
