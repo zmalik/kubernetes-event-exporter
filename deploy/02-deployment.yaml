@@ -10,6 +10,10 @@ spec:
       labels:
         app: event-exporter
         version: v1
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '2112'
+        prometheus.io/path: '/metrics'
     spec:
       serviceAccountName: event-exporter
       containers:
