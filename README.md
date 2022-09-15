@@ -52,6 +52,16 @@ receivers:
 * A route can have many sub-routes, forming a tree.
 * Routing starts from the root route.
 
+## Note:
+
+If you are operating a big cluster with many events, you might want to adjust the following values in configuration to
+avoid throttling issues:
+
+```
+kubeQPS: 60
+kubeBurst: 60
+```
+
 ### Opsgenie
 
 [Opsgenie](https://www.opsgenie.com) is an alerting and on-call management tool. kubernetes-event-exporter can push to
