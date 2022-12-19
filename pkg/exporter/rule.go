@@ -1,7 +1,7 @@
 package exporter
 
 import (
-	"github.com/opsgenie/kubernetes-event-exporter/pkg/kube"
+	"github.com/resmoio/kubernetes-event-exporter/pkg/kube"
 	"regexp"
 )
 
@@ -18,7 +18,7 @@ type Rule struct {
 	Labels      map[string]string
 	Annotations map[string]string
 	Message     string
-	APIVersion  string
+	APIVersion  string `yaml:"apiVersion"`
 	Kind        string
 	Namespace   string
 	Reason      string
