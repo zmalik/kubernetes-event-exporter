@@ -34,6 +34,7 @@ func NewAnnotationCache(kubeconfig *rest.Config) *AnnotationCache {
 }
 
 func (a *AnnotationCache) GetAnnotationsWithCache(reference *v1.ObjectReference) (map[string]string, error) {
+	return map[string]string{}, nil
 	uid := reference.UID
 
 	if val, ok := a.cache.Get(uid); ok {

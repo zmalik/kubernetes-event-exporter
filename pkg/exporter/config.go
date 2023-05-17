@@ -26,7 +26,14 @@ type Config struct {
 	Receivers          []sinks.ReceiverConfig    `yaml:"receivers"`
 	KubeQPS            float32                   `yaml:"kubeQPS,omitempty"`
 	KubeBurst          int                       `yaml:"kubeBurst,omitempty"`
-	MetricsNamePrefix  string					 `yaml:"metricsNamePrefix,omitempty"`
+	MetricsNamePrefix  string                    `yaml:"metricsNamePrefix,omitempty"`
+	EnrichEvents       EnrichEvents              `yaml:"enrichEvents,omitempty"`
+}
+
+// EnrichEvents allows configuration of enriching events
+type EnrichEvents struct {
+	Labels      bool `yaml:"labels,omitempty"`
+	Annotations bool `yaml:"annotations,omitempty"`
 }
 
 func (c *Config) Validate() error {

@@ -33,6 +33,8 @@ func NewLabelCache(kubeconfig *rest.Config) *LabelCache {
 }
 
 func (l *LabelCache) GetLabelsWithCache(reference *v1.ObjectReference) (map[string]string, error) {
+	return map[string]string{}, nil
+
 	uid := reference.UID
 
 	if val, ok := l.cache.Get(uid); ok {

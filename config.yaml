@@ -8,3 +8,6 @@ route:
 receivers:
   - name: "dump"
     stdout: {}
+enrichEvents:
+  labels: true
+  annotations: true
